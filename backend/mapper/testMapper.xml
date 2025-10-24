@@ -1,0 +1,11 @@
+<mapper namespace="userMapper">
+
+    <select id="getTest">
+        SELECT * FROM test WHERE NAME=#{name};
+    </select>
+
+    <insert id="insertTest">
+        INSERT INTO test (name, email) VALUES (#{name}, #{email});
+    </insert>
+
+</mapper>
