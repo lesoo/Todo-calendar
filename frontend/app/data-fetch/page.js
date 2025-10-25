@@ -12,12 +12,12 @@ export default function DataFetchPage() {
   // 📡 API 호출은 컴포넌트 마운트 시 한 번만 실행
   useEffect(() => {
     // ⚠️ 백엔드 Express 서버의 주소 (프론트엔드 포트 3000과 다름)
-    const API_URL = 'http://localhost:4000/api/greeting';
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     fetch(API_URL)
       .then(response => {
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          throw new Error(`HTTP error! status: ${response.status}. ${API_URL}`);
         }
         return response.json();
       })
