@@ -1,0 +1,14 @@
+<mapper namespace="userMapper">
+
+    <select id="login">
+        SELECT EMAIL
+        FROM USER
+        WHERE EMAIL = #{email}
+            AND CAST(AES_DECRYPT(PASSWORD, #{encKey}) AS CHAR(255)) = #{password}
+    </select>
+
+    <insert id="insertTest">
+        INSERT INTO test (name, email) VALUES (#{name}, #{email});
+    </insert>
+
+</mapper>
