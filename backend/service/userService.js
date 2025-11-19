@@ -1,7 +1,6 @@
 const { loadMapper } = require("../db/mybatis");
 const dotenv = require("dotenv");
 dotenv.config();
-process.env.DB_HOST
 
 // 모든 사용자 조회
 async function getTest(data) {

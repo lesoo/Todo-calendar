@@ -23,10 +23,19 @@ router.post("/auth/login", async (req, res) => {
             data: {}
         });
     }
+
+    const payload = { userId: rslt[0].EMAIL };
+    console.log(rslt[0].EMAIL);
+
+    const token = {
+        accessToken : commonService.createAccessToken(payload),
+        refreshToken : commonService.createRefreshToken(payload)
+    };
+
     res.status(200).json({
         success: true, // 실패
         message: '로그인 성공! 환영티비',
-        data: {}
+        data: token
     });
 });
 

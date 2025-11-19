@@ -1,4 +1,17 @@
 const { loadMapper } = require("../db/mybatis");
+const jwt = require('jsonwebtoken');
+const dotenv = require("dotenv");
+dotenv.config();
+const TOKEN_SECRET = process.env.TOKEN_SECRET;
+
+async function createAccessToken(payload) {
+  return jwt.sign(payload, TOKEN_SECRET, { expiresIn: '1h' });
+};
+
+async function createRefreshToken(payload) {
+  return jwt.sign(payload, TOKEN_SECRET, { expiresIn: '30d' });
+};
+
 
 // 모든 사용자 조회
 async function responseMiddleware(req, res, next) {
@@ -28,4 +41,4 @@ async function responseMiddleware(req, res, next) {
 }
 
 
-module.exports = { responseMiddleware };
+module.exports = { responseMiddleware, createAccessToken, createRefreshToken };
