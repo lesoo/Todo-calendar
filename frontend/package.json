@@ -9,10 +9,12 @@
         "lint": "eslint"
     },
     "dependencies": {
+        "@svgr/webpack": "^8.1.0",
         "dotenv": "^17.2.3",
         "next": "16.0.0",
         "react": "19.2.0",
-        "react-dom": "19.2.0"
+        "react-dom": "19.2.0",
+        "react-router-dom": "^7.9.6"
     },
     "devDependencies": {
         "@tailwindcss/postcss": "^4",
@@ -24,6 +26,7 @@
         "eslint-config-next": "16.0.0",
         "postcss": "^8.5.6",
         "tailwindcss": "^4.1.17",
-        "typescript": "^5"
+        "typescript": "^5",
+        "vite-plugin-svgr": "^4.5.0"
     }
 }
