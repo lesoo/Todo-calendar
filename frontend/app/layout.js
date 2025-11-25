@@ -7,7 +7,7 @@ import { ImageAtom, ButtonAtom, Icon, Text } from '@atoms';
 
 export default function RootLayout({ children }) {
 
-    const [isMobile, setIsMobile] = useState(true);
+    const [isMobile, setIsMobile] = useState();
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -16,11 +16,21 @@ export default function RootLayout({ children }) {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
+    const loadMain = (children) => {
+        return(
+            <main className={`flex p-4 ${isMobile ? 'w-full' : 'w-1/2'} mx-auto`}>
+                <div className={`justify-center`}>
+                    {children}
+                </div>
+            </main>
+            );
+    }
+
     return (
         <html lang="ko">
-            <body className={`bg-gray-50 text-gray-900 min-h-screen flex flex-col ${isMobile ? 'w-full' : 'w-1/2'}`}>
+            <body className={`bg-gray-50 text-gray-900 min-h-screen flex flex-col w-full`}>
                 {/* Header */}
-                <header className="bg-white shadow-md p-4 flex items-center">
+                <header className={`bg-white shadow-md p-4 flex items-center`}>
                     <Icon icon={'logo'} size={40}/>
                     <Text className="m-2" size='2xl' weight='bold'>Todo-Calendar</Text>
                     <nav>
@@ -29,9 +39,7 @@ export default function RootLayout({ children }) {
                 </header>
 
                 {/* Main content */}
-                <main className="flex-1 p-4">
-                {children}
-                </main>
+                {isMobile != null ? loadMain(children) : ''}
 
                 {/* Footer */}
                 <footer className="bg-white shadow-inner p-4 text-center text-sm text-gray-500">
