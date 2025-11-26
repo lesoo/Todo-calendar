@@ -1,7 +1,7 @@
 <mapper namespace="userMapper">
 
     <select id="login">
-        SELECT EMAIL
+        SELECT EMAIL, USER_NAME
         FROM USER
         WHERE EMAIL = #{email}
             AND CAST(AES_DECRYPT(PASSWORD, #{encKey}) AS CHAR(255)) = #{password}

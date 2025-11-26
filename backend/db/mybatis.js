@@ -19,21 +19,16 @@ async function loadMapper(mapperName, queryId, params = {}) {
 
     let query = queryNode._.trim();
 
-    // 🔥 MyBatis 스타일 #{param} 지원
     const values = [];
-    console.log(query);
     query = query.replace(/#\{(\w+)\}/g, (_, key) => {
         if (!(key in params)) throw new Error(`파라미터 ${key} 누락`);
         values.push(params[key]);
         return "?";
 
     });
-    console.log(params);
-    console.log(values);
     const conn = await pool.getConnection();
     const [rows] = await conn.query(query, values);
     conn.release();
-    console.log(rows)
     return rows;
 }
 
