@@ -26,13 +26,12 @@ const ImageAtom = (props) => {
 }
 
 const Icon = (props) => {
-    const svgPath = `icons/${props.icon}.svg`;
+    const svgPath = `/icons/${props.icon}.svg`;
     return (
         <div className={props.className ? props.className : 'p-2'}>
             <img
                 src={svgPath}
                 alt='Custom Icon'
-                // 크기는 CSS나 style 속성으로 지정합니다.
                 width={props.size}
                 height={props.size}
                 fill={props.color ? props.color : 'currentColor'}
