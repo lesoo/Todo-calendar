@@ -1,37 +1,42 @@
 // /app/login/page.js
 'use client';
-import { ImageAtom, Icon, InputText, TextButton, IconButton } from '@atoms';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation'; // React Router에서 import
-
+import { ImageAtom, InputText, TextButton } from '@atoms';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '../contexts/AuthContext';
+import api from '@/lib/api';
 
 export default function LoginPage() {
     const router = useRouter();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const { state, dispatch } = useAuth();
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password }),
-        });
-        if (!res.ok) {
-            alert(`로그인 실패`);
-            return;
+        try {
+            const response = await api.post('/auth/login', { email, password });
+
+            dispatch({
+                type: 'LOGIN_SUCCESS',
+                payload: response.data.user
+            });
+        } catch (error) {
+            console.error("Login failed", error);
+            alert("로그인에 실패했습니다.");
+        } finally {
+            router.replace('/dashboard');
         }
-
-        const data = await res.json();
-        localStorage.setItem('token', data.token); // ✅ 토큰 저장
-        router.push('/dashboard');
-
-
     };
+
+    useEffect(() => {// 동작안하는듯?
+        if (!state.isLoading && state.isAuthenticated) {
+            router.push('/dashboard');
+        }
+    }, [state.isAuthenticated, state.isLoading, router]);
 
     const moveToSignUp = () => {
         alert('signup');
-        // 뒤로가기 버튼을 클릭했을 때 현재 페이지로 돌아오지 않도록 상태와 함께 이동
         router.push('/signup', { state: { fromLogin: true } });
     };
 
@@ -44,7 +49,6 @@ export default function LoginPage() {
                     <InputText className='shadow-md border rounded-sm p-2 m-2' type='password' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='password' />
 
                     <TextButton type='submit' className='bg-gray-200 p-3 m-2 shadow-md rounded-md'>Login</TextButton>
-                    {/* <IconButton type='text' icon='logo' className='flex flex-row items-center justify-center'onClick={()=>alert('click!')}>abc</IconButton> */}
                 </form>
                 <TextButton type='submit' className='p-3 m-2 underline' onClick={()=>moveToSignUp()}>Sign Up</TextButton>
             </div>
