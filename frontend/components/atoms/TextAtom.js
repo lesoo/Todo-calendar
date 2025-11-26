@@ -53,7 +53,6 @@ const Text = ({
         className,
     ].join(' ');
 
-    // 렌더링할 태그(Tag)에 최종 클래스를 적용합니다.
     return (
         <Tag className={finalClassName} {...rest}>
             {children}
@@ -63,7 +62,6 @@ const Text = ({
 
 const InputText = (props) => {
 
-    // 렌더링할 태그(Tag)에 최종 클래스를 적용합니다.
     return (
         <input
             type={props.type} className={props.className}

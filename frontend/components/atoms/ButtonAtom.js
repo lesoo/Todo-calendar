@@ -19,7 +19,7 @@ const TextButton = (props) => {
     return (
         <a onClick={props.onClick} className={`flex justify-center ${props.className}`}>
             <button
-                type={props.type} // 기본 타입은 'button'으로 설정
+                type={props.type}
             >
                 {props.children}
             </button>
@@ -33,7 +33,7 @@ const IconButton = (props) => {
         <a onClick={props.onClick} className={props.className}>
             <Icon icon={props.icon} size={20}/>
             <button
-                type={props.type} // 기본 타입은 'button'으로 설정
+                type={props.type}
                 className={props.className}
             >
                 {props.children}
