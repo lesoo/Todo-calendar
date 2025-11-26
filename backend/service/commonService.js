@@ -12,10 +12,19 @@ async function createRefreshToken(payload) {
   return jwt.sign(payload, TOKEN_SECRET, { expiresIn: '30d' });
 };
 
+async function verifyToken(token) {
+    let userPayload;
+    try {
+        userPayload = jwt.verify(token, JWT_SECRET);
+    } catch (err) {
+        return {success : false};
+    } finally {
+        return {success : true, userPayload};
+    }
+};
 
 // 모든 사용자 조회
 async function responseMiddleware(req, res, next) {
-    // 성공 응답
     res.sendData = (data, message = '성공') => {
         res.json({
         success: true,
@@ -41,4 +50,9 @@ async function responseMiddleware(req, res, next) {
 }
 
 
-module.exports = { responseMiddleware, createAccessToken, createRefreshToken };
+module.exports = {
+    responseMiddleware,
+    createAccessToken,
+    createRefreshToken,
+    verifyToken
+};

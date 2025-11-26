@@ -1,17 +1,26 @@
 // backend/server.js
+const dotenv = require("dotenv");
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const port = 4000;
 const router = require('./router')
+dotenv.config();
+const port = process.env.SERVER_PORT;
+const cookieParser = require('cookie-parser');
 require('./logger');
+
 const { requestLogger, globalErrorHandler } = require('./logger');
 
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+};
 
-// 🌐 CORS 설정: 모든 출처 허용
-app.use(cors());
-// 📝 JSON 형식의 요청 본문을 파싱하기 위한 미들웨어
+app.use(cors(corsOptions));
 app.use(express.json());
+app.use(cookieParser());
 app.use(requestLogger);
 
 

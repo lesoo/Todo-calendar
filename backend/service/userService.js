@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 // 모든 사용자 조회
-async function getTest(data) {
+async function login(data) {
   data.encKey = process.env.ENC_KEY;
   return await loadMapper("userMapper", "login", data);
 }
@@ -12,4 +12,4 @@ async function createTest(name, email) {
   return await loadMapper("testMapper", "insertTest", [name, email]);
 }
 
-module.exports = { getTest, createTest };
+module.exports = { login, createTest };
