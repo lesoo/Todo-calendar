@@ -32,7 +32,6 @@ const loggerInstance = createLogger({
 // ---------------------------
 function requestLogger(req, res, next) {
   const start = Date.now();
-//   console.log(res);
 
   res.on('finish', () => {
     const duration = Date.now() - start;
