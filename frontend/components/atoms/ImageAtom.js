@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 
 function importAll(r) {
@@ -16,11 +16,11 @@ const images = importAll(
 
 const ImageAtom = (props) => {
     return (
-        <div className="p-4 flex justify-center items-center">
+        <div className='p-4 flex justify-center items-center'>
         <img
             src={props.imgSrc+'.png'}
             alt={props.imgSrc}
-            className="max-w-xs" />
+            className='max-w-xs' />
         </div>
     );
 }
@@ -31,7 +31,7 @@ const Icon = (props) => {
         <div className={props.className ? props.className : 'p-2'}>
             <img
                 src={svgPath}
-                alt="Custom Icon"
+                alt='Custom Icon'
                 // 크기는 CSS나 style 속성으로 지정합니다.
                 width={props.size}
                 height={props.size}

@@ -12,7 +12,7 @@ export default function DataFetchPage() {
   // 📡 API 호출은 컴포넌트 마운트 시 한 번만 실행
   useEffect(() => {
     // ⚠️ 백엔드 Express 서버의 주소 (프론트엔드 포트 3000과 다름)
-    const API_URL = process.env.NEXT_PUBLIC_API_URL;
+    const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/greeting`;
 
     fetch(API_URL)
       .then(response => {
@@ -25,8 +25,8 @@ export default function DataFetchPage() {
         setData(fetchedData);
       })
       .catch(fetchError => {
-        console.error("데이터 가져오기 오류:", fetchError);
-        setError("데이터 로드 실패. Express 서버(4000)가 실행 중인지 확인하세요.");
+        console.error(`데이터 가져오기 오류: ${fetchError}`);
+        setError(`데이터 로드 실패. Express 서버(4000)가 실행 중인지 확인하세요.`);
       })
       .finally(() => {
         setLoading(false);
@@ -36,7 +36,7 @@ export default function DataFetchPage() {
   return (
     <div style={{ padding: '20px', maxWidth: '800px', margin: 'auto', border: '1px solid #ddd' }}>
       <h1>Next.js (React) - Express API 연동 테스트</h1>
-      <Link href="/">
+      <Link href='/'>
         ← 홈으로 돌아가기
       </Link>
       <hr />
