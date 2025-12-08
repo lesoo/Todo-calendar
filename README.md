@@ -7,7 +7,7 @@
 ## 개발환경, 사용 API
   ![Node.js](https://img.shields.io/badge/nodejs-%2344f8844?style=for-the-badge&logo=nodejs&logoColor=white)
 ![NextJs](https://img.shields.io/badge/Firebase%20Cloud%20Messaging-%23fd8B00?style=for-the-badge&logo=fcm&logoColor=white)
-![React](https://img.shields.io/badge/react-%23fd8B00?style=for-the-badge&logo=react&logoColor=white)
+![React](https://img.shields.io/badge/react-3670A0?style=for-the-badge&logo=react&logoColor=white)
 <br>
 <br>
 
