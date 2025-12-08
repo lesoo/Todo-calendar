@@ -9,8 +9,11 @@
 ![NextJs](https://img.shields.io/badge/Firebase%20Cloud%20Messaging-%23fd8B00?style=for-the-badge&logo=fcm&logoColor=white)
 ![React](https://img.shields.io/badge/react-%23fd8B00?style=for-the-badge&logo=react&logoColor=white)
 <br>
+<br>
 
 ## ENV 파일 설정
+<br>
+
 - #### backend
 > backend 폴더에 저장
 ```
@@ -25,18 +28,22 @@
     TOKEN_SECRET=jwt토큰 암호화 키
     SERVER_PORT=
 ```
+<br>
+<br>
+
 - #### frontend
 > frontend 폴더에 저장
 ```
 NEXT_PUBLIC_API_URL=http://localhost:${backend:SERVER_PORT}api
 ```
+<br>
+<br>
 
 ## 사용방법
 .env 파일 설정<br>
 $git pull origin main<br>
 $yarn install<br>
 터미널 2개 구동<br>
-<br>
  - 터미널 1<br>
    $cd backend<br>
    $yarn start<br>
